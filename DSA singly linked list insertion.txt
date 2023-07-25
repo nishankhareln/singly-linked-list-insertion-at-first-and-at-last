@@ -1,0 +1,95 @@
+
+
+  // insertion of item in linked list and at the last of linked list.
+#include<stdio.h>
+#include<conio.h>
+#include<process.h>
+#include<malloc.h>
+struct Node {
+    int info;
+struct Node *next;
+};typedef struct Node Nodetype;
+ Nodetype *phead = NULL;
+ static count =0;
+void insertAtfirst(int);
+void insertAtlast(int);
+void display();
+int main(){
+int choice , element, flag = 1;
+do{
+    printf("___Linked list operation__");
+    printf("1.Insert at the beginning:\n");
+    printf("2.Insert at the end:\n ");
+    printf("3.Display \n");
+    printf("4.exit\n");
+    printf("enter your choice:\n");
+    scanf("%d",&choice);
+    switch(choice)
+    {
+    case 1 :
+        printf("Enter the element to be inserted at first:\n");
+        scanf("%d",&element);
+        insertAtfirst(element);
+        break;
+    case 2 :
+        printf("enter the element to be inserted at last:\n");
+        scanf("%d",&element);
+        break;
+    case 3:
+        printf("\n the node of the linked list is:\n");
+        display();
+        break;
+    default :
+        printf("enter the valid choice as options:\n");
+        break;
+    }
+
+}while(flag);
+}
+
+void insertAtfirst(int element)
+{
+
+    Nodetype *newNode;
+    newNode = (Nodetype*)malloc(sizeof(Nodetype));
+    newNode ->info = element;
+    newNode -> next = phead;
+    phead = newNode;
+}
+void insertAtlast(int element)
+{
+    Nodetype *newNode;
+    Nodetype *loc;
+    newNode = (Nodetype*)malloc(sizeof(Nodetype));
+    newNode -> info = element;
+    newNode -> next = NULL;
+    if(phead ==NULL)
+    {
+        phead = newNode;
+        return;
+    }
+    else{
+        Nodetype *loc = phead;
+        while(loc -> next != NULL)
+        {
+            loc =  loc->next;
+        }
+        loc -> next =newNode;
+    }
+}
+void display()
+{
+
+    Nodetype *temp;
+    temp = phead;
+    printf("The node is :\n");
+    while(temp != NULL)
+    {
+        printf("%d \t ",temp -> info);
+        temp = temp ->next;
+        count++;
+    }
+    printf("\n\n Number of element in list:%d",count);
+    printf("\n");
+    return;
+}
